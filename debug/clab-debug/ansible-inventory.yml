@@ -10,6 +10,6 @@ all:
         clab-debug-client:
           ansible_host: 172.20.20.2
         clab-debug-r1:
-          ansible_host: 172.20.20.4
-        clab-debug-server:
           ansible_host: 172.20.20.3
+        clab-debug-server:
+          ansible_host: 172.20.20.4

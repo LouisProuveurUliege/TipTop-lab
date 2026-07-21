@@ -6,7 +6,7 @@
       "prefix": "clab",
       "mgmt": {
         "network": "clab",
-        "bridge": "br-8e8eff5aab8b",
+        "bridge": "br-44b893e4052d",
         "ipv4-subnet": "172.20.20.0/24",
         "ipv4-gw": "172.20.20.1",
         "ipv6-subnet": "3fff:172:20:20::/64",
@@ -15,7 +15,7 @@
       }
     }
   },
-  "ssh-pub-keys": ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOCXLlKUDESzL0L3OQRWblM0Gesp5jdVORk8Tg+Slt/B","ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDo1QjPWxVYHylnDQbJUO/DoIj77Ea0Cq0md1a4kZjPd","ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEmsKIsIMvys/QsrES8lEgDJ+V5uMqRUeWcCPH2kcyM8","ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ6MmireYTBgYtlTne4o3Us+y65BwbGmCbbeB1MIbint","ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA9wy2st9Lbzau+SAhVCAk7nRNk3MwqnwFTf3lcq9+sX"],
+  "ssh-pub-keys": ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ6MmireYTBgYtlTne4o3Us+y65BwbGmCbbeB1MIbint","ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA9wy2st9Lbzau+SAhVCAk7nRNk3MwqnwFTf3lcq9+sX","ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOCXLlKUDESzL0L3OQRWblM0Gesp5jdVORk8Tg+Slt/B","ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDo1QjPWxVYHylnDQbJUO/DoIj77Ea0Cq0md1a4kZjPd","ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEmsKIsIMvys/QsrES8lEgDJ+V5uMqRUeWcCPH2kcyM8"],
   "nodes": {
     "client": {
       "index": "0",
@@ -34,7 +34,7 @@
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-8e8eff5aab8b",
+        "clab-mgmt-net-bridge": "br-44b893e4052d",
         "clab-node-group": "",
         "clab-node-kind": "linux",
         "clab-node-lab-dir": "/home/louis/Unif/tfe-tiptop/containerlab/debug/clab-debug/client",
@@ -46,12 +46,6 @@
         "containerlab": "debug"
       },
       "port-bindings": [
-        {
-          "host-ip": "",
-          "host-port": 0,
-          "port": 4433,
-          "protocol": "udp"
-        }
       ]
     },
     "r1": {
@@ -65,13 +59,13 @@
       "image": "frrouting/frr:v8.4.0",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.4",
+      "mgmt-ipv4-address": "172.20.20.3",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::4",
+      "mgmt-ipv6-address": "3fff:172:20:20::3",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-8e8eff5aab8b",
+        "clab-mgmt-net-bridge": "br-44b893e4052d",
         "clab-node-group": "",
         "clab-node-kind": "linux",
         "clab-node-lab-dir": "/home/louis/Unif/tfe-tiptop/containerlab/debug/clab-debug/r1",
@@ -96,13 +90,13 @@
       "image": "louisprouveuruliege/tiptop-h3-server:latest",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-address": "172.20.20.4",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::3",
+      "mgmt-ipv6-address": "3fff:172:20:20::4",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-8e8eff5aab8b",
+        "clab-mgmt-net-bridge": "br-44b893e4052d",
         "clab-node-group": "",
         "clab-node-kind": "linux",
         "clab-node-lab-dir": "/home/louis/Unif/tfe-tiptop/containerlab/debug/clab-debug/server",
@@ -129,13 +123,13 @@
         "a": {
           "node": "server",
           "interface": "eth1",
-          "mac": "aa:c1:ab:c6:28:15",
+          "mac": "aa:c1:ab:a5:03:b9",
           "peer": "z"
         },
         "z": {
           "node": "r1",
           "interface": "eth1",
-          "mac": "aa:c1:ab:67:ef:6f",
+          "mac": "aa:c1:ab:ee:5f:20",
           "peer": "a"
         }
       }
@@ -145,13 +139,13 @@
         "a": {
           "node": "client",
           "interface": "eth1",
-          "mac": "aa:c1:ab:f0:18:f4",
+          "mac": "aa:c1:ab:7b:a8:b0",
           "peer": "z"
         },
         "z": {
           "node": "r1",
           "interface": "eth2",
-          "mac": "aa:c1:ab:4e:a4:a2",
+          "mac": "aa:c1:ab:cf:24:08",
           "peer": "a"
         }
       }

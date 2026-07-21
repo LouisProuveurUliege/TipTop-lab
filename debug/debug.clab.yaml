@@ -13,8 +13,6 @@ topology:
       kind: linux
       image: louisprouveuruliege/tiptop-h3-server:latest
       exec:
-        - apt update
-        - apt install iproute2 -y
         - ip addr add 2001:db8:1::2/64 dev eth1
         - ip -6 route del default
         - ip -6 route add default via 2001:db8:1::1 dev eth1
@@ -23,8 +21,6 @@ topology:
       kind: linux
       image: louisprouveuruliege/tiptop-h3-client:latest
       exec:
-        - apt update
-        - apt install iproute2 -y
         - ip addr add 2001:db8:2::2/64 dev eth1
         - ip -6 route del default
         - ip -6 route add default via 2001:db8:2::1 dev eth1
