@@ -1,0 +1,160 @@
+{
+  "name": "debug",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "clab",
+        "bridge": "br-8e8eff5aab8b",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.20.20.1",
+        "ipv6-subnet": "3fff:172:20:20::/64",
+        "ipv6-gw": "3fff:172:20:20::1",
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOCXLlKUDESzL0L3OQRWblM0Gesp5jdVORk8Tg+Slt/B","ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDo1QjPWxVYHylnDQbJUO/DoIj77Ea0Cq0md1a4kZjPd","ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEmsKIsIMvys/QsrES8lEgDJ+V5uMqRUeWcCPH2kcyM8","ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ6MmireYTBgYtlTne4o3Us+y65BwbGmCbbeB1MIbint","ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA9wy2st9Lbzau+SAhVCAk7nRNk3MwqnwFTf3lcq9+sX"],
+  "nodes": {
+    "client": {
+      "index": "0",
+      "shortname": "client",
+      "longname": "clab-debug-client",
+      "fqdn": "client.debug.io",
+      "group": "",
+      "labdir": "/home/louis/Unif/tfe-tiptop/containerlab/debug/clab-debug/client",
+      "kind": "linux",
+      "image": "louisprouveuruliege/tiptop-h3-client:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::2",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-8e8eff5aab8b",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/louis/Unif/tfe-tiptop/containerlab/debug/clab-debug/client",
+        "clab-node-longname": "clab-debug-client",
+        "clab-node-name": "client",
+        "clab-node-type": "",
+        "clab-owner": "louis",
+        "clab-topo-file": "/home/louis/Unif/tfe-tiptop/containerlab/debug/debug.clab.yaml",
+        "containerlab": "debug"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 4433,
+          "protocol": "udp"
+        }
+      ]
+    },
+    "r1": {
+      "index": "1",
+      "shortname": "r1",
+      "longname": "clab-debug-r1",
+      "fqdn": "r1.debug.io",
+      "group": "",
+      "labdir": "/home/louis/Unif/tfe-tiptop/containerlab/debug/clab-debug/r1",
+      "kind": "linux",
+      "image": "frrouting/frr:v8.4.0",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.4",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::4",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-8e8eff5aab8b",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/louis/Unif/tfe-tiptop/containerlab/debug/clab-debug/r1",
+        "clab-node-longname": "clab-debug-r1",
+        "clab-node-name": "r1",
+        "clab-node-type": "",
+        "clab-owner": "louis",
+        "clab-topo-file": "/home/louis/Unif/tfe-tiptop/containerlab/debug/debug.clab.yaml",
+        "containerlab": "debug"
+      },
+      "port-bindings": [
+      ]
+    },
+    "server": {
+      "index": "2",
+      "shortname": "server",
+      "longname": "clab-debug-server",
+      "fqdn": "server.debug.io",
+      "group": "",
+      "labdir": "/home/louis/Unif/tfe-tiptop/containerlab/debug/clab-debug/server",
+      "kind": "linux",
+      "image": "louisprouveuruliege/tiptop-h3-server:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::3",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-8e8eff5aab8b",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/louis/Unif/tfe-tiptop/containerlab/debug/clab-debug/server",
+        "clab-node-longname": "clab-debug-server",
+        "clab-node-name": "server",
+        "clab-node-type": "",
+        "clab-owner": "louis",
+        "clab-topo-file": "/home/louis/Unif/tfe-tiptop/containerlab/debug/debug.clab.yaml",
+        "containerlab": "debug"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 4433,
+          "protocol": "udp"
+        }
+      ]
+    }
+  },
+  "links": [
+    {
+      "endpoints": {
+        "a": {
+          "node": "server",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:c6:28:15",
+          "peer": "z"
+        },
+        "z": {
+          "node": "r1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:67:ef:6f",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "client",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:f0:18:f4",
+          "peer": "z"
+        },
+        "z": {
+          "node": "r1",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:4e:a4:a2",
+          "peer": "a"
+        }
+      }
+    }
+  ]
+}

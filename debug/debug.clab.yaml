@@ -1,0 +1,50 @@
+name: debug
+
+topology:
+  nodes:
+    r1:
+      kind: linux
+      image: frrouting/frr:v8.4.0
+      binds:
+        - __clabNodeDir__/daemons:/etc/frr/daemons
+        - __clabNodeDir__/frr.conf:/etc/frr/frr.conf
+
+    server:
+      kind: linux
+      image: louisprouveuruliege/tiptop-h3-server:latest
+      exec:
+        - apt update
+        - apt install iproute2 -y
+        - ip addr add 2001:db8:1::2/64 dev eth1
+        - ip -6 route del default
+        - ip -6 route add default via 2001:db8:1::1 dev eth1
+
+    client:
+      kind: linux
+      image: louisprouveuruliege/tiptop-h3-client:latest
+      exec:
+        - apt update
+        - apt install iproute2 -y
+        - ip addr add 2001:db8:2::2/64 dev eth1
+        - ip -6 route del default
+        - ip -6 route add default via 2001:db8:2::1 dev eth1
+
+    # ipterm1:
+    #   kind: linux
+    #   image: gns3/ipterm:latest
+    #   exec:
+    #     - ip addr add 2001:db8:1::2/64 dev eth1
+    #     - ip -6 route del default
+    #     - ip -6 route add default via 2001:db8:1::1 dev eth1
+
+    # ipterm2:
+    #   kind: linux
+    #   image: gns3/ipterm:latest
+    #   exec:
+    #     - ip addr add 2001:db8:2::2/64 dev eth1
+    #     - ip -6 route del default
+    #     - ip -6 route add default via 2001:db8:2::1 dev eth1
+
+  links:
+    - endpoints: ["server:eth1", "r1:eth1"]
+    - endpoints: ["client:eth1", "r1:eth2"]
