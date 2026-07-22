@@ -1,0 +1,148 @@
+name: tiptop
+
+topology:
+  groups:
+    frr-router:
+      kind: linux
+      image: frrouting/frr:v8.4.0
+      binds:
+        - configs/__clabNodeName__/daemons:/etc/frr/daemons
+        - configs/__clabNodeName__/frr.conf:/etc/frr/frr.conf
+
+  nodes:
+
+    # Routers ============================================
+
+    Earth-R1:
+      group: frr-router
+
+    Earth-Gateway:
+      group: frr-router
+
+    GS1:
+      group: frr-router
+
+    GS2:
+      group: frr-router
+
+    GS3:
+      group: frr-router
+
+    Orbiter1:
+      group: frr-router
+
+    Orbiter2:
+      group: frr-router
+
+    SpaceBody-R1:
+      group: frr-router
+
+    SpaceBody-R2:
+      group: frr-router
+
+    # Bridges =============================================
+
+    # Bridge to connect earth services
+    tiptop-br-earth:
+      kind: bridge
+
+    # Bridge to connect services on the space body (hub)
+    tiptop-br-hub:
+      kind: bridge
+
+    # Bridge to connect services on the space body (rover)
+    tiptop-br-rover:
+      kind: bridge
+
+    # Bridge to aggregate links in space
+    tiptop-br-space:
+      kind: bridge
+
+    # Services ============================================
+
+    dns-SB:
+      kind: linux
+      image: louisprouveuruliege/tiptop-dns:latest
+
+    dns-earth:
+      kind: linux
+      image: louisprouveuruliege/tiptop-dns:latest
+
+    h3-server-quiche:
+      kind: linux
+      image: louisprouveuruliege/tiptop-h3-server:latest
+
+    h3-client-quiche:
+      kind: linux
+      image: louisprouveuruliege/tiptop-h3-client:latest
+
+  links:
+
+    # Earth links =========================================
+
+    - endpoints: [ Earth-R1:eth2, Earth-Gateway:eth4 ]
+
+    - endpoints: [ Earth-Gateway:eth1, GS1:eth2]
+    - endpoints: [ Earth-Gateway:eth2, GS2:eth2]
+    - endpoints: [ Earth-Gateway:eth3, GS3:eth3]
+
+    # Deep Space links =====================================
+
+    - type: veth
+      endpoints:
+        - node: "tiptop-br-space"
+          interface: "GS1"
+        - node: "GS1"
+          interface: "eth1"
+          mac: 02:00:00:00:02:01
+    - type: veth
+      endpoints:
+        - node: "tiptop-br-space"
+          interface: "GS2"
+        - node: "GS2"
+          interface: "eth1"
+          mac: 02:00:00:00:03:01
+    - type: veth
+      endpoints:
+        - node: "tiptop-br-space"
+          interface: "GS3"
+        - node: "GS3"
+          interface: "eth1"
+          mac: 02:00:00:00:04:01
+    - type: veth
+      endpoints:
+        - node: "tiptop-br-space"
+          interface: "O24"
+        - node: "Orbiter2"
+          interface: "eth4"
+          mac: 02:00:00:00:06:04
+    - type: veth
+      endpoints:
+        - node: "tiptop-br-space"
+          interface: "O15"
+        - node: "Orbiter1"
+          interface: "eth4"
+          mac: 02:00:00:00:05:04
+
+    # Space Body links
+
+    - endpoints: [ Orbiter1:eth1, SpaceBody-R1:eth1 ]
+    - endpoints: [ Orbiter1:eth2, SpaceBody-R2:eth1 ]
+
+    - endpoints: [ Orbiter2:eth1, SpaceBody-R1:eth2 ]
+    - endpoints: [ Orbiter2:eth2, SpaceBody-R2:eth2 ]
+
+    - endpoints: [ Orbiter1:eth3, Orbiter2:eth3 ]
+
+    # Services Links ==========================================
+
+    - endpoints: [ Earth-R1:eth1, tiptop-br-earth:eR1 ]
+    - endpoints: [ SpaceBody-R1:eth3, tiptop-br-hub:sbR1 ]
+    - endpoints: [ SpaceBody-R2:eth3, tiptop-br-rover:sbR2 ]
+
+    - endpoints: [ h3-server-quiche:eth1, tiptop-br-hub:h3serv ]
+    - endpoints: [ dns-SB:eth1, tiptop-br-hub:sbDNS ]
+
+    - endpoints: [ h3-client-quiche:eth1, tiptop-br-earth:h3client ]
+    - endpoints: [ dns-earth:eth1, tiptop-br-earth:eDNS ]
+

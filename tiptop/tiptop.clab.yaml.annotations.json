@@ -1,0 +1,164 @@
+{
+  "freeTextAnnotations": [],
+  "freeShapeAnnotations": [],
+  "trafficRateAnnotations": [],
+  "groupStyleAnnotations": [],
+  "networkNodeAnnotations": [],
+  "nodeAnnotations": [
+    {
+      "id": "Earth-R1",
+      "position": {
+        "x": -200,
+        "y": 0
+      }
+    },
+    {
+      "id": "SpaceBody-R2",
+      "position": {
+        "x": 620,
+        "y": -80
+      }
+    },
+    {
+      "id": "SpaceBody-R1",
+      "position": {
+        "x": 620,
+        "y": 80
+      }
+    },
+    {
+      "id": "Orbiter2",
+      "position": {
+        "x": 440,
+        "y": -80
+      }
+    },
+    {
+      "id": "Orbiter1",
+      "position": {
+        "x": 440,
+        "y": 80
+      }
+    },
+    {
+      "id": "GS3",
+      "position": {
+        "x": 140,
+        "y": 120
+      }
+    },
+    {
+      "id": "GS2",
+      "position": {
+        "x": 140,
+        "y": 0
+      }
+    },
+    {
+      "id": "GS1",
+      "position": {
+        "x": 140,
+        "y": -120
+      }
+    },
+    {
+      "id": "tiptop-br-earth",
+      "position": {
+        "x": -300,
+        "y": 0
+      }
+    },
+    {
+      "id": "Earth-Gateway",
+      "position": {
+        "x": 20,
+        "y": 0
+      }
+    },
+    {
+      "id": "clab-tiptop-br-hub",
+      "position": {
+        "x": 620,
+        "y": 240
+      }
+    },
+    {
+      "id": "clab-tiptop-br-rover",
+      "position": {
+        "x": 620,
+        "y": -220
+      }
+    },
+    {
+      "id": "h3-server-quiche",
+      "position": {
+        "x": 780,
+        "y": 220
+      },
+      "icon": "server"
+    },
+    {
+      "id": "dns-SB",
+      "position": {
+        "x": 620,
+        "y": 380
+      },
+      "icon": "server"
+    },
+    {
+      "id": "h3-client-quiche",
+      "position": {
+        "x": -300,
+        "y": 120
+      },
+      "icon": "client"
+    },
+    {
+      "id": "dns-earth",
+      "position": {
+        "x": -300,
+        "y": -120
+      },
+      "icon": "server"
+    },
+    {
+      "id": "clab-tiptop-br-DS",
+      "position": {
+        "x": 280,
+        "y": 0
+      }
+    },
+    {
+      "id": "clab-tiptop-br-DS1",
+      "position": {
+        "x": 260,
+        "y": 0
+      }
+    },
+    {
+      "id": "tiptop-br-rover",
+      "position": {
+        "x": 620,
+        "y": -200
+      }
+    },
+    {
+      "id": "tiptop-br-hub",
+      "position": {
+        "x": 620,
+        "y": 220
+      }
+    },
+    {
+      "id": "tiptop-br-space",
+      "position": {
+        "x": 300,
+        "y": 0
+      },
+      "label": "tiptop-br-space"
+    }
+  ],
+  "edgeAnnotations": [],
+  "aliasEndpointAnnotations": [],
+  "viewerSettings": {}
+}
