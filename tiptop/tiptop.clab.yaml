@@ -9,13 +9,13 @@ topology:
         - configs/__clabNodeName__/daemons:/etc/frr/daemons
         - configs/__clabNodeName__/frr.conf:/etc/frr/frr.conf
       exec:
-       - ip route del default dev eth0
-       - ip -6 route del default dev eth0
-    
+        - ip route del default dev eth0
+        - ip -6 route del default dev eth0
+
     service:
       exec:
-       - ip route del default dev eth0
-       - ip -6 route del default dev eth0
+        - ip route del default dev eth0
+        - ip -6 route del default dev eth0
 
   nodes:
 
@@ -72,21 +72,35 @@ topology:
       kind: linux
       group: service
       image: louisprouveuruliege/tiptop-dns:latest
+      binds:
+        - configs/__clabNodeName__/Corefile:/Corefile
+        - configs/__clabNodeName__/zones:/zones
+      exec:
+        - ip addr add 2001:db8:2:1::8888/64 dev eth1
 
     dns-earth:
       kind: linux
       group: service
       image: louisprouveuruliege/tiptop-dns:latest
+      binds:
+        - configs/__clabNodeName__/Corefile:/Corefile
+        - configs/__clabNodeName__/zones:/zones
+      exec:
+        - ip addr add 2001:db8:1:1::8888/64 dev eth1
 
     h3-server-quiche:
       kind: linux
       group: service
       image: louisprouveuruliege/tiptop-h3-server:latest
+      exec:
+        - sh -c "echo 'nameserver 2001:db8:2:1::8888' > /etc/resolv.conf"
 
     h3-client-quiche:
       kind: linux
       group: service
       image: louisprouveuruliege/tiptop-h3-client:latest
+      exec:
+        - sh -c "echo 'nameserver 2001:db8:1:1::8888' > /etc/resolv.conf"
 
   links:
 
@@ -94,9 +108,9 @@ topology:
 
     - endpoints: [ Earth-R1:eth2, Earth-Gateway:eth4 ]
 
-    - endpoints: [ Earth-Gateway:eth1, GS1:eth2]
-    - endpoints: [ Earth-Gateway:eth2, GS2:eth2]
-    - endpoints: [ Earth-Gateway:eth3, GS3:eth2]
+    - endpoints: [ Earth-Gateway:eth1, GS1:eth2 ]
+    - endpoints: [ Earth-Gateway:eth2, GS2:eth2 ]
+    - endpoints: [ Earth-Gateway:eth3, GS3:eth2 ]
 
     # Deep Space links =====================================
 
@@ -151,10 +165,14 @@ topology:
     - endpoints: [ Earth-R1:eth1, tiptop-br-earth:eR1 ]
     - endpoints: [ SpaceBody-R1:eth3, tiptop-br-hub:sbR1 ]
     - endpoints: [ SpaceBody-R2:eth3, tiptop-br-rover:sbR2 ]
-
-    - endpoints: [ h3-server-quiche:eth1, tiptop-br-hub:h3serv ]
+    - type: veth
+      endpoints:
+        - node: "h3-server-quiche"
+          interface: "eth1"
+          mac: aa:c1:ab:00:51:7b  # Fixed MAc address such that fixed IPv6 addr
+        - node: "tiptop-br-hub"
+          interface: "h3serv"
     - endpoints: [ dns-SB:eth1, tiptop-br-hub:sbDNS ]
 
     - endpoints: [ h3-client-quiche:eth1, tiptop-br-earth:h3client ]
     - endpoints: [ dns-earth:eth1, tiptop-br-earth:eDNS ]
-

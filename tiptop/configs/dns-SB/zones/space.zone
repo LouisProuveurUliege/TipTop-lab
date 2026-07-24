@@ -1,0 +1,14 @@
+$ORIGIN space.
+
+@ 3600 IN  SOA ns.space. admin.space. (
+        1   ; serial
+        3600 ; refresh
+        600  ; retry
+        604800 ; expire
+        86400 ; min ttl
+)
+
+@   IN  NS  ns.space.
+
+ns      IN  AAAA  2001:db8:2:1::8888
+http3   IN  AAAA  2001:db8:2:1:a8c1:abff:fe00:517b

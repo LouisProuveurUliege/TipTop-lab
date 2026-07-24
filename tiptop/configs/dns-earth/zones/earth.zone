@@ -1,0 +1,13 @@
+$ORIGIN earth.
+
+@ 3600 IN  SOA ns.earth. admin.earth. (
+        1   ; serial
+        3600 ; refresh
+        600  ; retry
+        604800 ; expire
+        86400 ; min ttl
+)
+
+@   IN  NS  ns.earth.
+
+ns      IN  AAAA  2001:db8:1:1::8888
