@@ -27,20 +27,39 @@ topology:
     Earth-Gateway:
       group: frr-router
 
+    # The following routers need ipv6 neighbor entries to avoid ND over deep space links
+
     GS1:
       group: frr-router
+      exec:
+        - ip -6 neigh add 2001:db8::1001 lladdr 02:00:00:00:05:04 dev eth1 nud permanent
+        - ip -6 neigh add 2001:db8::1002 lladdr 02:00:00:00:06:04 dev eth1 nud permanent
 
     GS2:
       group: frr-router
+      exec:
+        - ip -6 neigh add 2001:db8::1001 lladdr 02:00:00:00:05:04 dev eth1 nud permanent
+        - ip -6 neigh add 2001:db8::1002 lladdr 02:00:00:00:06:04 dev eth1 nud permanent
 
     GS3:
       group: frr-router
+      exec:
+        - ip -6 neigh add 2001:db8::1001 lladdr 02:00:00:00:05:04 dev eth1 nud permanent
+        - ip -6 neigh add 2001:db8::1002 lladdr 02:00:00:00:06:04 dev eth1 nud permanent
 
     Orbiter1:
       group: frr-router
+      exec:
+        - ip -6 neigh add 2001:db8::1 lladdr 02:00:00:00:02:01 dev eth4 nud permanent
+        - ip -6 neigh add 2001:db8::2 lladdr 02:00:00:00:03:01 dev eth4 nud permanent
+        - ip -6 neigh add 2001:db8::3 lladdr 02:00:00:00:04:01 dev eth4 nud permanent
 
     Orbiter2:
       group: frr-router
+      exec:
+        - ip -6 neigh add 2001:db8::1 lladdr 02:00:00:00:02:01 dev eth4 nud permanent
+        - ip -6 neigh add 2001:db8::2 lladdr 02:00:00:00:03:01 dev eth4 nud permanent
+        - ip -6 neigh add 2001:db8::3 lladdr 02:00:00:00:04:01 dev eth4 nud permanent
 
     SpaceBody-R1:
       group: frr-router
