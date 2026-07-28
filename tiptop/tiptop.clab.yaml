@@ -111,15 +111,21 @@ topology:
       kind: linux
       group: service
       image: louisprouveuruliege/tiptop-h3-server:latest
+      env:
+        QLOGDIR: /qlog
       exec:
         - sh -c "echo 'nameserver 2001:db8:2:1::8888' > /etc/resolv.conf"
+        - mkdir /qlog
 
     h3-client-quiche:
       kind: linux
       group: service
       image: louisprouveuruliege/tiptop-h3-client:latest
+      env:
+        QLOGDIR: /qlog
       exec:
         - sh -c "echo 'nameserver 2001:db8:1:1::8888' > /etc/resolv.conf"
+        - mkdir /qlog
 
   links:
 
