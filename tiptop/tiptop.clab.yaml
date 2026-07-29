@@ -116,6 +116,7 @@ topology:
       exec:
         - sh -c "echo 'nameserver 2001:db8:2:1::8888' > /etc/resolv.conf"
         - mkdir /qlog
+        - openssl rand -out /app/files/bigfile.txt 52428800 # Create a 50 MiB file for testing purposes
 
     h3-client-quiche:
       kind: linux
