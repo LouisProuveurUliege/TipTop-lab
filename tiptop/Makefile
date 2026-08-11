@@ -1,8 +1,9 @@
 BRIDGES   := tiptop-br-earth tiptop-br-hub tiptop-br-rover tiptop-br-space
 
-# Link imparement settings
-BANDWIDTH	?= 1000000		# kbps
-DELAY		?= 3s
+# Link impairment settings
+UPLINK_BW	?= 1000000		# bandwidth from earth to space body in kbps
+DOWNLINK_BW ?= 1000000		# bandwidth from space body to earth in kbps
+DELAY		?= 1.3s 		# one-way delay on deep space links
 
 .PHONY: all lab bridges clean destroy-bridges
 
@@ -10,12 +11,12 @@ all: lab
 
 lab: bridges
 	sudo containerlab deploy
-	echo "Applying impairment: $(BANDWIDTH)kbps and $(DELAY) delay;"
-	containerlab tools netem set -n clab-tiptop-GS1 -i eth1 --rate $(BANDWIDTH) --delay $(DELAY)
-	containerlab tools netem set -n clab-tiptop-GS2 -i eth1 --rate $(BANDWIDTH) --delay $(DELAY) 
-	containerlab tools netem set -n clab-tiptop-GS3 -i eth1 --rate $(BANDWIDTH) --delay $(DELAY) 
-	containerlab tools netem set -n clab-tiptop-Orbiter1 -i eth4 --rate $(BANDWIDTH) --delay $(DELAY) 
-	containerlab tools netem set -n clab-tiptop-Orbiter2 -i eth4 --rate $(BANDWIDTH) --delay $(DELAY) 
+	echo "Applying impairment: $(UPLINK_BW)kbps uplink, $(DOWNLINK_BW)kbps downlink, and $(DELAY) delay;"
+	containerlab tools netem set -n clab-tiptop-GS1 -i eth1 --rate $(UPLINK_BW) --delay $(DELAY)
+	containerlab tools netem set -n clab-tiptop-GS2 -i eth1 --rate $(UPLINK_BW) --delay $(DELAY) 
+	containerlab tools netem set -n clab-tiptop-GS3 -i eth1 --rate $(UPLINK_BW) --delay $(DELAY) 
+	containerlab tools netem set -n clab-tiptop-Orbiter1 -i eth4 --rate $(DOWNLINK_BW) --delay $(DELAY) 
+	containerlab tools netem set -n clab-tiptop-Orbiter2 -i eth4 --rate $(DOWNLINK_BW) --delay $(DELAY) 
 
 bridges:
 	@for br in $(BRIDGES); do \
