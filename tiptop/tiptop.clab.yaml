@@ -113,8 +113,10 @@ topology:
       image: louisprouveuruliege/tiptop-h3-server:latest
       binds:
         - configs/config.json:/app/config.json
+        - keylog.log:/app/keylog.log
       env:
         QLOGDIR: /qlog
+        SSLKEYLOGFILE: /app/keylog.log
       exec:
         - sh -c "echo 'nameserver 2001:db8:2:1::8888' > /etc/resolv.conf"
         - mkdir /qlog
@@ -126,8 +128,10 @@ topology:
       image: louisprouveuruliege/tiptop-h3-client:latest
       binds:
         - configs/config.json:/app/config.json
+        - keylog.log:/app/keylog.log
       env:
         QLOGDIR: /qlog
+        SSLKEYLOGFILE: /app/keylog.log
       exec:
         - sh -c "echo 'nameserver 2001:db8:1:1::8888' > /etc/resolv.conf"
         - mkdir /qlog
