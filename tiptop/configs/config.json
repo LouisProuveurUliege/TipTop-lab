@@ -1,0 +1,18 @@
+{
+"initial_rtt": 333,
+"initial_max_data": 1048576,
+"initial_max_stream_data_bidi_local": 65536,
+"initial_max_stream_data_bidi_remote": 65536,
+"initial_max_stream_data_uni": 65536,
+"max_idle_timeout": 30000,
+"max_recv_udp_payload_size": 1350,
+"max_send_udp_payload_size": 1350,
+"cc_algorithm": "cubic",
+"handshake_timeout": 10000,
+"max_connection_window": 16777216,
+"max_stream_window": 16777216,
+"ack_delay_exponent": 3,
+"max_ack_delay": 25,
+"initial_congestion_window_packets": 10,
+"max_pacing_rate": 1073741824
+}
