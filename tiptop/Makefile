@@ -9,7 +9,7 @@ DELAY		?= 1.3s 		# one-way delay on deep space links
 
 all: lab
 
-lab: bridges
+lab: bridges keylog.log
 	sudo containerlab deploy
 	echo "Applying impairment: $(UPLINK_BW)kbps uplink, $(DOWNLINK_BW)kbps downlink, and $(DELAY) delay;"
 	containerlab tools netem set -n clab-tiptop-GS1 -i eth1 --rate $(UPLINK_BW) --delay $(DELAY)
@@ -28,6 +28,10 @@ bridges:
 			echo "Bridge $$br already exists, skipping"; \
 		fi; \
 	done
+
+keylog.log:
+	@touch keylog.log
+	@echo "Keylog file created: keylog.log"
 
 clean: 
 	sudo containerlab destroy --cleanup
