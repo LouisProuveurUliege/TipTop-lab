@@ -43,3 +43,6 @@ docker cp $SERVER_CONTAINER:/qlog/. $METRICS_DIR/qlog
 
 docker cp $CLIENT_CONTAINER:/app/client.pcap $METRICS_DIR/client.pcap
 echo "Metrics and qlog files transferred to ${METRICS_DIR}"
+
+echo "Copying config.json into metrics directory ..."
+cp configs/config.json $METRICS_DIR/config.json
