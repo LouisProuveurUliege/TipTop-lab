@@ -12,8 +12,8 @@ cleanup() {
     docker exec -it $SERVER_CONTAINER pkill -f "$SERVER_CMD"
     docker exec -it $CLIENT_CONTAINER rm -f /app/client.pcap
     docker exec -it $CLIENT_CONTAINER rm -f /app/metrics.log
-    docker exec -it $CLIENT_CONTAINER rm -rf /qlog/*
-    docker exec -it $SERVER_CONTAINER rm -rf /qlog/*
+    docker exec -it $CLIENT_CONTAINER bash -c "rm -rf /qlog/*"
+    docker exec -it $SERVER_CONTAINER bash -c "rm -rf /qlog/*"
     echo "Done. Exiting"
 }
 trap cleanup EXIT

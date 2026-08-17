@@ -14,5 +14,5 @@
 "ack_delay_exponent": 3,
 "max_ack_delay": 25,
 "initial_congestion_window_packets": 10,
-"max_pacing_rate": 1073741824
+"max_pacing_rate": 1000
 }
